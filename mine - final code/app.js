@@ -55,10 +55,31 @@ function anyNumber(min, max) {
   return min + Math.floor(Math.random() * (max - min));
 }
 
+// -------------------- 尚未修好 bug -------------------- //
+// 確認 brickArray 裡是否有一樣的
+function checkSame(arr, index) {
+  for(let i = 0; i < arr.length; i++) {
+    for(let j = (arr.length - 1); j > i; j--) {
+      // console.log({i,j});
+      if(arr[i].x == arr[j].x && arr[i].y == arr[j].y ) {
+        console.log("重複了");
+        return true;
+      }
+    }
+  }
+}
+
 // 每次遊戲開始，都有隨機的 10 個磚頭
 for(let i = 1; i <= 10; i++) {
+  // 每製作出一個 brick 之前，要先確認 brickArray 裡是否有一樣的
+  checkSame(brickArray);
   new Brick(anyNumber(0, ctxColum) * brickUnit, anyNumber(0, ctxRow) * brickUnit);
+  // while(checkSame(brickArray)) {
+    //   brickArray.splice(i, 1);
+    //   new Brick(anyNumber(0, ctxColum) * brickUnit, anyNumber(0, ctxRow) * brickUnit);
+  // }
 }
+// -------------------- 尚未修好 bug -------------------- //
 
 console.log(brickArray);
 
